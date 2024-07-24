@@ -7,6 +7,9 @@ import { useCallback, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import AuthSocialBtn from "./AuthSocialBtn";
 import { BsGithub, BsGoogle } from "react-icons/bs";
+import axios from "axios"
+import toast from "react-hot-toast";
+import {signIn} from "next-auth/react"
 
 type Variant = 'LOGIN' | "REGISTER";
 
@@ -40,11 +43,25 @@ const AuthForm = () => {
         setIsLoading(true);
 
         if (variant === "REGISTER") {
-            // register logic
+            axios.post('/api/register', data)
+            .catch(()=> toast.error("Something went wrong !"))
+            .finally(()=> setIsLoading(false))
         }
 
         if (variant === "LOGIN") {
-            // login logic
+            signIn('credentials',{
+                ...data, 
+                redirect: false
+            })
+            .then((callback)=> {
+                if (callback ?.error ){
+                    toast.error("Invalid info.")
+                }
+                if (callback ?. ok ) {
+                    toast.success("Login successful.")
+                }
+            })
+            .finally(()=> setIsLoading(false))
         }
     }
 
@@ -60,7 +77,7 @@ const AuthForm = () => {
             <div className=" bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
                 <form className=" space-y-6" onSubmit={handleSubmit(onSubmit)}>
                     {variant === "REGISTER" && (
-                        < Input id="email" label='Username' register={register} errors={errors} disabled={isLoading} />
+                        < Input id="name" label='Username' register={register} errors={errors} disabled={isLoading} />
                     )}
 
                     < Input id="email" label='Email address' type="email" register={register} errors={errors} disabled={isLoading}/>
