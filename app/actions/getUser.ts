@@ -11,11 +11,11 @@ const getUsers = async () => {
 
   try {
     const users = await prisma.user.findMany({
-      orderBy: {
+      orderBy: {   // so that the new users are at the top 
         createdAt: 'desc',
       },
       where: {
-        NOT: {
+        NOT: {   // not including the user email 
           email: session.user.email
         }
       }

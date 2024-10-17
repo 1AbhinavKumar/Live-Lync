@@ -5,13 +5,22 @@ const nextConfig = {
         ['next-superjson-plugin',{}]
       ]
     },
-    images:{
-        domains: [
-            "res.cloudinary.com", 
-            "avatars.githubusercontent.com", 
-            "lh3.googleusercontent.com",
-        ]
-    }
+    "images": {
+    "remotePatterns": [
+      {
+        "protocol": "https",
+        "hostname": "res.cloudinary.com"  
+      },
+      {
+        "protocol": "https",
+        "hostname": "avatars.githubusercontent.com"
+      },
+      {
+        "protocol": "https",
+        "hostname": "lh3.googleusercontent.com"   // these are used to import the user images when logging with google or github 
+      }
+    ]
+  }
   };
   
   export default nextConfig;
