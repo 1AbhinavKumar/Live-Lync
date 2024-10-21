@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 import { format } from "date-fns";
 import Image from "next/image";
 import { useState } from "react";
-// import ImageModal from "./ImageModal";
+import ImageModal from "./ImageModal";
 
 interface MessageBoxProps {
   data: FullMessageType;
@@ -60,11 +60,11 @@ const MessageBox: React.FC<MessageBoxProps> = ({
           </div>
         </div>
         <div className={message}>
-          {/* <ImageModal
+          <ImageModal
             src={data.image}
             isOpen={imageModalOpen}
             onClose={() => setImageModalOpen(false)}
-          /> */}
+          />
           {data.image ? (
             <Image
               onClick={() => setImageModalOpen(true)}

@@ -1,8 +1,8 @@
 'use client';
 //  as we are using button, input , useeffects since these are interactive so it is a client side component .
 
-import Input from "@/app/components/inputs/input";
-import Button from "@/app/components/button"
+import Input from "@/app/components/inputs/Input";
+import Button from "@/app/components/Button"
 import { useCallback, useState , useEffect} from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import AuthSocialBtn from "./AuthSocialBtn";
