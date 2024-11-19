@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/utils/authOptions";
 
-import { authOptions } from "../api/auth/[...nextauth]/route";
 
 
 
