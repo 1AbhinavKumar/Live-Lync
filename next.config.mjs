@@ -5,6 +5,7 @@ const nextConfig = {
         ['next-superjson-plugin',{}]
       ]
     },
+    "output": 'standalone',
     "images": {
     "remotePatterns": [
       {
